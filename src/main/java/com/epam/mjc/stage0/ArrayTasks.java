@@ -1,5 +1,7 @@
 package com.epam.mjc.stage0;
 
+import java.util.Random;
+
 /**
  * Here are the tasks for working with the arrays.
  * <p>
@@ -58,7 +60,7 @@ public class ArrayTasks {
     public int findIndexOfNumber(int[] arr, int number) {
         for (int i = 0; i < arr.length; i++)
             if (number == arr[i])
-                return i + 1;
+                return i;
 
         return -1;
     }
@@ -93,9 +95,17 @@ public class ArrayTasks {
      */
     public int[] getOnlyPositiveNumbers(int[] arr) {
         int[] newArr = new int[arr.length];
+        int k = 0;
         for (int i = 0, j = 0; i < arr.length; i++)
-            if (arr[i] > 0)
+            if (arr[i] > 0) {
+                k++;
                 newArr[j++] = arr[i];
+            }
+
+        arr = newArr;
+        newArr = new int[k];
+        for (int i = 0; i < k; i++)
+            newArr[i] = arr[i];
 
         return newArr;
     }
@@ -116,7 +126,7 @@ public class ArrayTasks {
         int t;
         for (int i = 0; i < arr.length; i++){
             for (int k = 0; k < arr[i].length; k++) {
-                for (int l = k; l < arr[i].length; l++) {
+                for (int l = k + 1; l < arr[i].length; l++) {
                     if (arr[i][k] > arr[i][l]) {
                         t = arr[i][k];
                         arr[i][k] = arr[i][l];
@@ -127,7 +137,7 @@ public class ArrayTasks {
         }
 
         for (int i = 0; i < arr.length; i++){
-            for (int j = i; j < arr.length; j++){
+            for (int j = i + 1; j < arr.length; j++){
                 if (arr[i].length > arr[j].length){
                     inner = arr[i];
                     arr[i] = arr[j];
